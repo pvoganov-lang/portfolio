@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ПАР — спешелти-кофейня в центре</title>
+  <meta name="description" content="Кофейня ПАР: обжарка на месте, авторские напитки, завтраки весь день. Бронирование столика онлайн.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a class="logo" href="#hero" aria-label="ПАР — на главную">
+        <span class="logo__mark">П</span>
+        <span class="logo__text">ПАР<small>coffee&nbsp;shop</small></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Основная навигация">
+        <a class="nav__link" href="#menu">Меню</a>
+        <a class="nav__link" href="#about">О нас</a>
+        <a class="nav__link" href="#gallery">Атмосфера</a>
+        <a class="nav__link" href="#reviews">Отзывы</a>
+        <a class="nav__link" href="#contact">Контакты</a>
+      </nav>
+
+      <a class="btn btn--small header__cta" href="#contact">Забронировать</a>
+
+      <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <div class="hero__content reveal">
+          <span class="badge">Обжарка на месте · с 2019</span>
+          <h1 class="hero__title">Кофе, который<br><em>пахнет утром</em></h1>
+          <p class="hero__text">
+            Спешелти-зерно собственной обжарки, авторские напитки и завтраки весь день.
+            Заходите за чашкой — останетесь за разговором.
+          </p>
+          <div class="hero__actions">
+            <a class="btn" href="#menu">Смотреть меню</a>
+            <a class="btn btn--ghost" href="#contact">Забронировать столик</a>
+          </div>
+          <dl class="stats">
+            <div class="stats__item"><dt>4.9</dt><dd>рейтинг на картах</dd></div>
+            <div class="stats__item"><dt>12</dt><dd>сортов зерна</dd></div>
+            <div class="stats__item"><dt>7:30</dt><dd>открываемся</dd></div>
+          </dl>
+        </div>
+
+        <div class="hero__visual reveal" aria-hidden="true">
+          <div class="cup">
+            <div class="cup__steam"><span></span><span></span><span></span></div>
+            <div class="cup__body"><div class="cup__coffee"></div></div>
+            <div class="cup__saucer"></div>
+          </div>
+          <div class="hero__card">
+            <span class="hero__card-label">сегодня в меню</span>
+            <strong>Флэт уайт на Эфиопии</strong>
+            <span class="hero__card-price">280 ₽</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="menu">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">Меню</span>
+          <h2 class="section__title">Что взять сегодня</h2>
+          <p class="section__sub">Меню меняется каждые две недели — под сезон и свежую обжарку.</p>
+        </header>
+
+        <div class="cards">
+          <article class="card reveal">
+            <div class="card__icon" aria-hidden="true">☕</div>
+            <h3 class="card__title">Кофе</h3>
+            <ul class="card__list">
+              <li><span>Эспрессо</span><span>180 ₽</span></li>
+              <li><span>Капучино</span><span>260 ₽</span></li>
+              <li><span>Флэт уайт</span><span>280 ₽</span></li>
+              <li><span>Фильтр V60</span><span>300 ₽</span></li>
+              <li><span>Раф на кокосе</span><span>320 ₽</span></li>
+            </ul>
+          </article>
+
+          <article class="card card--accent reveal">
+            <div class="card__icon" aria-hidden="true">🥐</div>
+            <h3 class="card__title">Завтраки</h3>
+            <ul class="card__list">
+              <li><span>Круассан с миндалём</span><span>220 ₽</span></li>
+              <li><span>Сырники с ягодами</span><span>390 ₽</span></li>
+              <li><span>Авокадо-тост</span><span>420 ₽</span></li>
+              <li><span>Омлет с томатами</span><span>350 ₽</span></li>
+              <li><span>Гранола с йогуртом</span><span>290 ₽</span></li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <div class="card__icon" aria-hidden="true">🍰</div>
+            <h3 class="card__title">Десерты</h3>
+            <ul class="card__list">
+              <li><span>Баскский чизкейк</span><span>380 ₽</span></li>
+              <li><span>Тирамису</span><span>350 ₽</span></li>
+              <li><span>Брауни с фундуком</span><span>280 ₽</span></li>
+              <li><span>Медовик</span><span>300 ₽</span></li>
+              <li><span>Круассан-сет</span><span>450 ₽</span></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="about">
+      <div class="container about">
+        <div class="about__text reveal">
+          <span class="eyebrow">О нас</span>
+          <h2 class="section__title">Маленькая кофейня<br>с большой обжаркой</h2>
+          <p>
+            Мы обжариваем зерно прямо в зале — поэтому кофе пахнет ещё на подходе.
+            Работаем с фермами Эфиопии, Колумбии и Кении, каждую партию пробуем вручную.
+          </p>
+          <p>
+            Здесь можно поработать за ноутбуком у окна, встретиться с другом
+            или просто выпить чашку, пока ждёте дождь.
+          </p>
+          <ul class="features">
+            <li><strong>Своя обжарка</strong><span>12 сортов, свежий помол</span></li>
+            <li><strong>Завтраки весь день</strong><span>до самого закрытия</span></li>
+            <li><strong>Wi-Fi и розетки</strong><span>у каждого столика</span></li>
+            <li><strong>Без собак нельзя</strong><span>ждём с питомцами</span></li>
+          </ul>
+        </div>
+
+        <div class="about__visual reveal" aria-hidden="true">
+          <div class="about__photo about__photo--1"></div>
+          <div class="about__photo about__photo--2"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">Атмосфера</span>
+          <h2 class="section__title">Тёплый свет и запах зерна</h2>
+        </header>
+        <div class="gallery">
+          <figure class="gallery__item gallery__item--wide reveal"><span>зал</span></figure>
+          <figure class="gallery__item reveal"><span>бар</span></figure>
+          <figure class="gallery__item reveal"><span>витрина</span></figure>
+          <figure class="gallery__item gallery__item--tall reveal"><span>утро</span></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark" id="reviews">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">Отзывы</span>
+          <h2 class="section__title">Что говорят гости</h2>
+        </header>
+        <div class="reviews">
+          <blockquote class="review reveal">
+            <p>«Лучший флэт уайт в районе. Ребята реально разбираются в зерне — подсказали кислотность под мой вкус».</p>
+            <footer><strong>Анна</strong><span>гостья с 2022</span></footer>
+          </blockquote>
+          <blockquote class="review reveal">
+            <p>«Сижу тут с ноутбуком по утрам. Тихо, розетки есть, персонал не гонит из-за столика».</p>
+            <footer><strong>Дмитрий</strong><span>фрилансер</span></footer>
+          </blockquote>
+          <blockquote class="review reveal">
+            <p>«Сырники — отдельная любовь. Прихожу каждую субботу, уже как ритуал».</p>
+            <footer><strong>Марина</strong><span>гостья</span></footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact">
+        <div class="contact__info reveal">
+          <span class="eyebrow">Контакты</span>
+          <h2 class="section__title">Забронируем<br>ваш столик</h2>
+          <p>Оставьте телефон — перезвоним в течение 15 минут и забронируем место.</p>
+
+          <ul class="contact__list">
+            <li><span>Адрес</span><strong>ул. Примерная, 12</strong></li>
+            <li><span>Часы</span><strong>пн–пт 7:30–22:00<br>сб–вс 9:00–23:00</strong></li>
+            <li><span>Телефон</span><a href="tel:+79991234567">+7 999 123-45-67</a></li>
+          </ul>
+        </div>
+
+        <form class="form reveal" id="bookingForm" novalidate>
+          <div class="form__field">
+            <label for="name">Как вас зовут</label>
+            <input type="text" id="name" name="name" placeholder="Имя" autocomplete="name" required>
+            <span class="form__error" data-error-for="name"></span>
+          </div>
+
+          <div class="form__field">
+            <label for="phone">Телефон</label>
+            <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__" autocomplete="tel" required>
+            <span class="form__error" data-error-for="phone"></span>
+          </div>
+
+          <div class="form__row">
+            <div class="form__field">
+              <label for="date">Дата</label>
+              <input type="date" id="date" name="date" required>
+              <span class="form__error" data-error-for="date"></span>
+            </div>
+            <div class="form__field">
+              <label for="guests">Гостей</label>
+              <select id="guests" name="guests">
+                <option value="1">1</option>
+                <option value="2" selected>2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5+</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form__field">
+            <label for="comment">Комментарий</label>
+            <textarea id="comment" name="comment" rows="3" placeholder="Например: столик у окна"></textarea>
+          </div>
+
+          <label class="form__check">
+            <input type="checkbox" id="agree" name="agree" required>
+            <span>Согласен с обработкой персональных данных</span>
+          </label>
+          <span class="form__error" data-error-for="agree"></span>
+
+          <button class="btn btn--full" type="submit">Забронировать</button>
+          <p class="form__success" id="formSuccess" role="status" hidden>
+            Спасибо! Заявка отправлена — перезвоним в течение 15 минут.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a class="logo logo--footer" href="#hero">
+        <span class="logo__mark">П</span>
+        <span class="logo__text">ПАР<small>coffee&nbsp;shop</small></span>
+      </a>
+      <p class="footer__copy">© <span id="year"></span> Кофейня ПАР · концепт для портфолио</p>
+      <div class="footer__socials">
+        <a href="#" aria-label="Telegram">tg</a>
+        <a href="#" aria-label="VK">vk</a>
+        <a href="#" aria-label="Instagram">ig</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

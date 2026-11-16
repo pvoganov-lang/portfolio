@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram-бот записи клиентов — кейс</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #171310; --surface: #221c17; --line: #3a2f27;
+      --text: #f3ece4; --muted: #a2917f; --accent: #c8602f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font-family: "Manrope", system-ui, sans-serif; line-height: 1.65;
+    }
+    .wrap { width: min(900px, 100% - 40px); margin-inline: auto; padding: 56px 0 72px; }
+    a { color: var(--accent); }
+    .back { font-size: 14px; text-decoration: none; color: var(--muted); }
+    .back:hover { color: var(--accent); }
+    h1 { margin: 18px 0 10px; font-size: clamp(28px, 4vw, 42px); line-height: 1.1; letter-spacing: -0.02em; }
+    .lead { color: var(--muted); max-width: 60ch; }
+    h2 { margin: 40px 0 14px; font-size: 22px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .box { padding: 20px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); }
+    .box h3 { margin: 0 0 8px; font-size: 16px; }
+    .box p { margin: 0; color: var(--muted); font-size: 14.5px; }
+    ul { padding-left: 20px; color: var(--muted); }
+    li { margin-bottom: 8px; }
+    li strong { color: var(--text); }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+    .tags span {
+      padding: 5px 12px; border-radius: 8px; background: rgba(200,96,47,.14);
+      color: #e6a982; font-size: 12px; font-weight: 700;
+    }
+    pre {
+      margin: 0; padding: 18px; overflow-x: auto; border-radius: 14px;
+      background: #110e0b; border: 1px solid var(--line);
+      font-size: 13px; line-height: 1.55; color: #d8cbbf;
+    }
+    code { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+    .flow { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; counter-reset: step; }
+    .flow li {
+      counter-increment: step; padding: 12px 16px; border-radius: 12px;
+      background: var(--surface); border: 1px solid var(--line); margin: 0;
+      color: var(--text); font-size: 14.5px;
+    }
+    .flow li::before {
+      content: counter(step); display: inline-grid; place-items: center;
+      width: 22px; height: 22px; margin-right: 10px; border-radius: 50%;
+      background: var(--accent); color: #fff; font-size: 12px; font-weight: 800;
+    }
+    @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../index.html">← Все проекты</a>
+
+    <h1>Telegram-бот записи клиентов</h1>
+    <p class="lead">
+      Бот для студии красоты: клиент сам выбирает услугу, дату и время, оставляет имя и телефон,
+      а владелец получает уведомление в Telegram. Занятые слоты не показываются.
+    </p>
+
+    <div class="tags">
+      <span>Python 3</span><span>aiogram 3</span><span>SQLite</span><span>FSM</span><span>async/await</span>
+    </div>
+
+    <h2>Как проходит запись</h2>
+    <ol class="flow">
+      <li>Клиент нажимает «Записаться» и выбирает услугу из списка с ценами</li>
+      <li>Выбирает день — показываются только свободные слоты</li>
+      <li>Выбирает время: занятые часы исключены из клавиатуры</li>
+      <li>Вводит имя и телефон (можно одной кнопкой из Telegram)</li>
+      <li>Проверяет данные на экране подтверждения</li>
+      <li>Запись попадает в базу, администратору уходит уведомление</li>
+    </ol>
+
+    <h2>Что внутри</h2>
+    <div class="grid">
+      <div class="box">
+        <h3>Валидация на каждом шаге</h3>
+        <p>Имя — от 2 до 40 символов, нормализация телефона в формат +7 (999) 123-45-67, дата не в прошлом.</p>
+      </div>
+      <div class="box">
+        <h3>Защита от двойной записи</h3>
+        <p>Уникальный индекс в SQLite по дате и времени: два клиента не займут один слот даже при гонке.</p>
+      </div>
+      <div class="box">
+        <h3>Мои записи</h3>
+        <p>Клиент видит свои будущие записи и может отменить любую — админу приходит уведомление.</p>
+      </div>
+      <div class="box">
+        <h3>Админ-команда</h3>
+        <p><code>/admin</code> показывает записи на сегодня и сумму выручки — без отдельной панели.</p>
+      </div>
+    </div>
+
+    <h2>Фрагмент кода</h2>
+    <pre><code>@router.callback_query(Booking.confirm, F.data == "confirm:yes")
+async def confirm_booking(callback: CallbackQuery, state: FSMContext) -> None:
+    data = await state.get_data()
+    service = SERVICES[data["service"]]
+
+    booking_id = await store.add(
+        user_id=callback.from_user.id,
+        name=data["name"],
+        phone=data["phone"],
+        service=service.title,
+        price=service.price,
+        visit_date=data["visit_date"],
+        visit_time=data["visit_time"],
+    )
+    await state.clear()
+    await notify_admins(callback.bot, f"Новая запись №{booking_id}")</code></pre>
+
+    <h2>Что можно добавить</h2>
+    <ul>
+      <li><strong>Напоминания</strong> за 24 и 2 часа до визита</li>
+      <li><strong>Онлайн-оплату</strong> через ЮKassa или Telegram Payments</li>
+      <li><strong>Перенос на PostgreSQL</strong> и запуск в Docker</li>
+      <li><strong>Админ-панель</strong> со списком, переносом и отменой записей</li>
+    </ul>
+  </div>
+</body>
+</html>
